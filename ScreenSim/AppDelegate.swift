@@ -10,12 +10,15 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
-
-
+    var windowControllers: [SimulatorWindowController] = []
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        
+        let path = "/Users/kyb/code/vector3/promo-materials/screenshots"
+        let wc = SimulatorWindowController(imageFolder: path)
+        self.windowControllers.append(wc)
+        wc.showWindow(self)
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

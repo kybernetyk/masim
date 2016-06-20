@@ -10,6 +10,11 @@
 		0D0311051D18210E00C1DAB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0311041D18210E00C1DAB3 /* AppDelegate.swift */; };
 		0D0311071D18210E00C1DAB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D0311061D18210E00C1DAB3 /* Assets.xcassets */; };
 		0D03110A1D18210E00C1DAB3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D0311081D18210E00C1DAB3 /* MainMenu.xib */; };
+		0D4E94191D1821630065F763 /* SimulatorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E94171D1821630065F763 /* SimulatorWindowController.swift */; };
+		0D4E941A1D1821630065F763 /* SimulatorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4E94181D1821630065F763 /* SimulatorWindowController.xib */; };
+		0D4E94251D1823D50065F763 /* SimulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E94231D1823D50065F763 /* SimulatorViewController.swift */; };
+		0D4E94261D1823D50065F763 /* SimulatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4E94241D1823D50065F763 /* SimulatorViewController.xib */; };
+		0D4E94281D1823F10065F763 /* SimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E94271D1823F10065F763 /* SimulatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +23,11 @@
 		0D0311061D18210E00C1DAB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D0311091D18210E00C1DAB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0D03110B1D18210E00C1DAB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D4E94171D1821630065F763 /* SimulatorWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorWindowController.swift; sourceTree = "<group>"; };
+		0D4E94181D1821630065F763 /* SimulatorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimulatorWindowController.xib; sourceTree = "<group>"; };
+		0D4E94231D1823D50065F763 /* SimulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorViewController.swift; sourceTree = "<group>"; };
+		0D4E94241D1823D50065F763 /* SimulatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimulatorViewController.xib; sourceTree = "<group>"; };
+		0D4E94271D1823F10065F763 /* SimulatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,12 +60,33 @@
 		0D0311031D18210E00C1DAB3 /* ScreenSim */ = {
 			isa = PBXGroup;
 			children = (
+				0D4E94161D18213A0065F763 /* Simulator window */,
 				0D0311041D18210E00C1DAB3 /* AppDelegate.swift */,
 				0D0311061D18210E00C1DAB3 /* Assets.xcassets */,
 				0D0311081D18210E00C1DAB3 /* MainMenu.xib */,
 				0D03110B1D18210E00C1DAB3 /* Info.plist */,
 			);
 			path = ScreenSim;
+			sourceTree = "<group>";
+		};
+		0D4E94161D18213A0065F763 /* Simulator window */ = {
+			isa = PBXGroup;
+			children = (
+				0D4E94221D1823B40065F763 /* Simulator View */,
+				0D4E94171D1821630065F763 /* SimulatorWindowController.swift */,
+				0D4E94181D1821630065F763 /* SimulatorWindowController.xib */,
+			);
+			name = "Simulator window";
+			sourceTree = "<group>";
+		};
+		0D4E94221D1823B40065F763 /* Simulator View */ = {
+			isa = PBXGroup;
+			children = (
+				0D4E94231D1823D50065F763 /* SimulatorViewController.swift */,
+				0D4E94241D1823D50065F763 /* SimulatorViewController.xib */,
+				0D4E94271D1823F10065F763 /* SimulatorView.swift */,
+			);
+			name = "Simulator View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D0311071D18210E00C1DAB3 /* Assets.xcassets in Resources */,
+				0D4E941A1D1821630065F763 /* SimulatorWindowController.xib in Resources */,
 				0D03110A1D18210E00C1DAB3 /* MainMenu.xib in Resources */,
+				0D4E94261D1823D50065F763 /* SimulatorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +161,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4E94191D1821630065F763 /* SimulatorWindowController.swift in Sources */,
+				0D4E94281D1823F10065F763 /* SimulatorView.swift in Sources */,
+				0D4E94251D1823D50065F763 /* SimulatorViewController.swift in Sources */,
 				0D0311051D18210E00C1DAB3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -271,6 +307,7 @@
 				0D0311101D18210E00C1DAB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
