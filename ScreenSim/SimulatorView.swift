@@ -103,10 +103,10 @@ class SimulatorView: NSView {
             }
             img.drawInRect(rect)
         }
-        
-        NSColor.greenColor().set()
-        let cr = CGRect(origin: self.lastClickLocation, size: CGSize(width: 10, height: 10))
-        NSRectFill(cr)
+//        
+//        NSColor.greenColor().set()
+//        let cr = CGRect(origin: self.lastClickLocation, size: CGSize(width: 10, height: 10))
+//        NSRectFill(cr)
     }
     
 //    override func mouseDown(theEvent: NSEvent) {

@@ -10,6 +10,11 @@
 		0D0311051D18210E00C1DAB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0311041D18210E00C1DAB3 /* AppDelegate.swift */; };
 		0D0311071D18210E00C1DAB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D0311061D18210E00C1DAB3 /* Assets.xcassets */; };
 		0D03110A1D18210E00C1DAB3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D0311081D18210E00C1DAB3 /* MainMenu.xib */; };
+		0D053FFC1D195E0200D3D4A0 /* IconSimulatorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D053FFA1D195E0200D3D4A0 /* IconSimulatorWindowController.swift */; };
+		0D053FFD1D195E0200D3D4A0 /* IconSimulatorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D053FFB1D195E0200D3D4A0 /* IconSimulatorWindowController.xib */; };
+		0D0540011D195E4F00D3D4A0 /* IconSimulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D053FFF1D195E4F00D3D4A0 /* IconSimulatorViewController.swift */; };
+		0D0540021D195E4F00D3D4A0 /* IconSimulatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D0540001D195E4F00D3D4A0 /* IconSimulatorViewController.xib */; };
+		0D0540041D195E6200D3D4A0 /* IconSimulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0540031D195E6200D3D4A0 /* IconSimulatorView.swift */; };
 		0D4E94191D1821630065F763 /* SimulatorWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E94171D1821630065F763 /* SimulatorWindowController.swift */; };
 		0D4E941A1D1821630065F763 /* SimulatorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4E94181D1821630065F763 /* SimulatorWindowController.xib */; };
 		0D4E94251D1823D50065F763 /* SimulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4E94231D1823D50065F763 /* SimulatorViewController.swift */; };
@@ -23,6 +28,11 @@
 		0D0311061D18210E00C1DAB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D0311091D18210E00C1DAB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		0D03110B1D18210E00C1DAB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D053FFA1D195E0200D3D4A0 /* IconSimulatorWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconSimulatorWindowController.swift; sourceTree = "<group>"; };
+		0D053FFB1D195E0200D3D4A0 /* IconSimulatorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconSimulatorWindowController.xib; sourceTree = "<group>"; };
+		0D053FFF1D195E4F00D3D4A0 /* IconSimulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconSimulatorViewController.swift; sourceTree = "<group>"; };
+		0D0540001D195E4F00D3D4A0 /* IconSimulatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconSimulatorViewController.xib; sourceTree = "<group>"; };
+		0D0540031D195E6200D3D4A0 /* IconSimulatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconSimulatorView.swift; sourceTree = "<group>"; };
 		0D4E94171D1821630065F763 /* SimulatorWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorWindowController.swift; sourceTree = "<group>"; };
 		0D4E94181D1821630065F763 /* SimulatorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimulatorWindowController.xib; sourceTree = "<group>"; };
 		0D4E94231D1823D50065F763 /* SimulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimulatorViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +70,8 @@
 		0D0311031D18210E00C1DAB3 /* ScreenSim */ = {
 			isa = PBXGroup;
 			children = (
-				0D4E94161D18213A0065F763 /* Simulator window */,
+				0D053FF91D195DBD00D3D4A0 /* Icon Simulator Window */,
+				0D4E94161D18213A0065F763 /* Screen Simulator window */,
 				0D0311041D18210E00C1DAB3 /* AppDelegate.swift */,
 				0D0311061D18210E00C1DAB3 /* Assets.xcassets */,
 				0D0311081D18210E00C1DAB3 /* MainMenu.xib */,
@@ -69,14 +80,34 @@
 			path = ScreenSim;
 			sourceTree = "<group>";
 		};
-		0D4E94161D18213A0065F763 /* Simulator window */ = {
+		0D053FF91D195DBD00D3D4A0 /* Icon Simulator Window */ = {
+			isa = PBXGroup;
+			children = (
+				0D053FFE1D195E2400D3D4A0 /* Icon Simulator View */,
+				0D053FFA1D195E0200D3D4A0 /* IconSimulatorWindowController.swift */,
+				0D053FFB1D195E0200D3D4A0 /* IconSimulatorWindowController.xib */,
+			);
+			name = "Icon Simulator Window";
+			sourceTree = "<group>";
+		};
+		0D053FFE1D195E2400D3D4A0 /* Icon Simulator View */ = {
+			isa = PBXGroup;
+			children = (
+				0D053FFF1D195E4F00D3D4A0 /* IconSimulatorViewController.swift */,
+				0D0540001D195E4F00D3D4A0 /* IconSimulatorViewController.xib */,
+				0D0540031D195E6200D3D4A0 /* IconSimulatorView.swift */,
+			);
+			name = "Icon Simulator View";
+			sourceTree = "<group>";
+		};
+		0D4E94161D18213A0065F763 /* Screen Simulator window */ = {
 			isa = PBXGroup;
 			children = (
 				0D4E94221D1823B40065F763 /* Simulator View */,
 				0D4E94171D1821630065F763 /* SimulatorWindowController.swift */,
 				0D4E94181D1821630065F763 /* SimulatorWindowController.xib */,
 			);
-			name = "Simulator window";
+			name = "Screen Simulator window";
 			sourceTree = "<group>";
 		};
 		0D4E94221D1823B40065F763 /* Simulator View */ = {
@@ -147,9 +178,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D0540021D195E4F00D3D4A0 /* IconSimulatorViewController.xib in Resources */,
 				0D0311071D18210E00C1DAB3 /* Assets.xcassets in Resources */,
 				0D4E941A1D1821630065F763 /* SimulatorWindowController.xib in Resources */,
 				0D03110A1D18210E00C1DAB3 /* MainMenu.xib in Resources */,
+				0D053FFD1D195E0200D3D4A0 /* IconSimulatorWindowController.xib in Resources */,
 				0D4E94261D1823D50065F763 /* SimulatorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,10 +194,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D053FFC1D195E0200D3D4A0 /* IconSimulatorWindowController.swift in Sources */,
 				0D4E94191D1821630065F763 /* SimulatorWindowController.swift in Sources */,
+				0D0540011D195E4F00D3D4A0 /* IconSimulatorViewController.swift in Sources */,
 				0D4E94281D1823F10065F763 /* SimulatorView.swift in Sources */,
 				0D4E94251D1823D50065F763 /* SimulatorViewController.swift in Sources */,
 				0D0311051D18210E00C1DAB3 /* AppDelegate.swift in Sources */,
+				0D0540041D195E6200D3D4A0 /* IconSimulatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
