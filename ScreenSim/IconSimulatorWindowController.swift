@@ -9,13 +9,12 @@
 import Cocoa
 
 class IconSimulatorWindowController: NSWindowController {
-    var iconPath: String? = nil
+    var iconPaths: [String] = []
     var simViewController = IconSimulatorViewController()
     
-    convenience init(iconPath: String) {
+    convenience init(iconPaths: [String]) {
         self.init()
-        self.iconPath = iconPath
-//        self.imageFolder = imageFolder
+        self.iconPaths = iconPaths
     }
     
     override var windowNibName: String? {
@@ -25,13 +24,21 @@ class IconSimulatorWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
 
-        guard let iconp = self.iconPath else {
-            fatalError("no image folder set")
-            //TODO: trigger NSOpenPanel in this case
-        }
         self.window?.contentViewController = self.simViewController
-        self.window?.setTitleWithRepresentedFilename(iconp)
-        self.simViewController.icon = NSImage(contentsOfFile: iconp)
+        self.loadIcons()
     }
     
+    @IBAction func reload(_ sender: AnyObject?) {
+        self.loadIcons()
+    }
+
+    func loadIcons() {
+        var icons: [NSImage] = []
+        for iconp in self.iconPaths {
+            if let icon = NSImage(contentsOfFile: iconp) {
+                icons.append(icon)
+            }
+        }
+        self.simViewController.icons = icons
+    }
 }

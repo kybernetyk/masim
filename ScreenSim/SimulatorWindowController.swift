@@ -13,14 +13,14 @@ extension String {
         return String(NSString(string: self).lastPathComponent)
     }
     
-    func stringByAppendingPathComponent(comp: String) -> String {
-        let ns = NSString(string: self).stringByAppendingPathComponent(comp)
+    func stringByAppendingPathComponent(_ comp: String) -> String {
+        let ns = NSString(string: self).appendingPathComponent(comp)
         return String(ns)
     }
 }
 
 class SimulatorWindowController: NSWindowController {
-    private var simViewController = SimulatorViewController()
+    fileprivate var simViewController = SimulatorViewController()
     
     var imageFolder: String? = nil
     
@@ -33,12 +33,12 @@ class SimulatorWindowController: NSWindowController {
         return "SimulatorWindowController"
     }
 
-    func loadImagesFromFolder(path: String) -> [NSImage] {
-        let fmgr = NSFileManager.defaultManager()
+    func loadImagesFromFolder(_ path: String) -> [NSImage] {
+        let fmgr = FileManager.default
         do {
-            let fcontents = try fmgr.contentsOfDirectoryAtPath(path)
+            let fcontents = try fmgr.contentsOfDirectory(atPath: path)
             let fns = fcontents.filter {
-                $0.containsString(".png") && !$0.containsString("exp")
+                $0.contains(".png") && !$0.contains("exp")
             }
             return fns.flatMap { (fn: String) -> NSImage? in
                 let absp = path.stringByAppendingPathComponent(fn)
@@ -61,7 +61,7 @@ class SimulatorWindowController: NSWindowController {
         
     }
     
-    @IBAction func reload(sender: AnyObject?) {
+    @IBAction func reload(_ sender: AnyObject?) {
         guard let ifdr = self.imageFolder else {
             fatalError("no image folder set")
             //TODO: trigger NSOpenPanel in this case

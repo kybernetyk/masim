@@ -9,39 +9,43 @@
 import Cocoa
 
 class IconSimulatorView: NSView {
-    @IBInspectable var wallpaperImage: NSImage? = NSImage(named: "Wallpaper")
+//    @IBInspectable var wallpaperImage: NSImage? = NSImage(named: "Wallpaper")
     @IBInspectable var masImage: NSImage? = NSImage(named: "MasIcon")
     
-    var icon: NSImage? = nil {
+    var icons: [NSImage] = [] {
+        didSet {
+            for idx in 0..<icons.count {
+                self.currentColRows[idx] = (col: 0, row: 0)
+            }
+            self.needsDisplay = true
+        }
+    }
+    
+    fileprivate var currentColRows: [Int : (col: Int, row: Int)] = [:] {
         didSet {
             self.needsDisplay = true
         }
     }
     
-    private var currentColRow: (col: Int, row: Int) = (col: 0, row: 0) {
-        didSet {
-            self.needsDisplay = true
-        }
-    }
     
-    private func iconRectAt(col: Int, row: Int) -> CGRect {
-        //all values derived from a 2880x1440 screenshot
-        func coordsForColRow(col: Int, row: Int) -> (x: CGFloat, y: CGFloat) {
-            func xForCol(col: Int) -> CGFloat {
-                let colw: CGFloat = 0.1607638889
+    fileprivate func iconRectAt(_ col: Int, row: Int) -> CGRect {
+        //all values derived from a 2880x1440 screenshot (MasIcon in assets)
+        func coordsForColRow(_ col: Int, row: Int) -> (x: CGFloat, y: CGFloat) {
+            func xForCol(_ col: Int) -> CGFloat {
+                let colw: CGFloat = 0.16085
                 return 0.08576388889 + colw * CGFloat(col)
             }
             
-            func yForRow(row: Int) -> CGFloat {
-                let rowh: CGFloat = 0.121
-                return 0.6916666667 - rowh * CGFloat(row)
+            func yForRow(_ row: Int) -> CGFloat {
+                let rowh: CGFloat = 0.120
+                return 0.69 - rowh * CGFloat(row)
             }
             
             return (xForCol(col), yForRow(row))
         }
 
-        let wf: CGFloat = 76.0 / 1440.0
-        let hf: CGFloat = 76.0 / 900.0
+        let wf: CGFloat = 75.0 / 1440.0
+        let hf: CGFloat = 75.0 / 900.0
         
         let w = wf * self.cbounds.width
         let h = hf * self.cbounds.height
@@ -54,7 +58,7 @@ class IconSimulatorView: NSView {
     }
     
     //dirtey iterating lol
-    func colRowAtPoint(point: CGPoint) -> (col: Int, row: Int)? {
+    func colRowAtPoint(_ point: CGPoint) -> (col: Int, row: Int)? {
         for c in 0..<5 {
             for r in 0..<6 {
                 let rct = self.iconRectAt(c, row: r)
@@ -66,33 +70,43 @@ class IconSimulatorView: NSView {
         return nil
     }
 
-    private var iconRect: CGRect {
-        return self.iconRectAt(self.currentColRow.col, row: self.currentColRow.row)
+    fileprivate func iconRectForIconAtIndex(_ iconIndex: Int) -> CGRect? {
+        if let rc = self.currentColRows[iconIndex] {
+            return self.iconRectAt(rc.col, row: rc.row)
+        }
+        return nil
     }
-
     
-    private var lastClickLocation: CGPoint = CGPointZero
-    
-    private var cbounds: NSRect {
+    fileprivate var lastClickLocation: CGPoint = CGPoint.zero
+    fileprivate var cbounds: NSRect {
         return self.centerScanRect(self.bounds)
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
-        self.wallpaperImage?.drawInRect(self.cbounds)
-        self.masImage?.drawInRect(self.cbounds)
+        self.masImage?.draw(in: self.cbounds)
         
-        NSColor.whiteColor().set()
-        NSRectFill(self.iconRect)
-        
-        self.icon?.drawInRect(self.iconRect)
+        NSColor.white.set()
+        for idx in 0..<self.icons.count {
+            if let r = self.iconRectForIconAtIndex(idx) {
+                NSRectFill(NSInsetRect(r, -1, -1))
+                self.icons[idx].draw(in: r)
+            }
+        }
     }
     
-    override func mouseUp(theEvent: NSEvent) {
-        let clickLocation = self.convertPoint(theEvent.locationInWindow, fromView:  nil)
+    override func mouseUp(with theEvent: NSEvent) {
+        let clickLocation = self.convert(theEvent.locationInWindow, from:  nil)
         if let coords = self.colRowAtPoint(clickLocation) {
-            self.currentColRow = coords
+            self.currentColRows[0] = coords
+        }
+    }
+
+    override func rightMouseUp(with theEvent: NSEvent) {
+        let clickLocation = self.convert(theEvent.locationInWindow, from:  nil)
+        if let coords = self.colRowAtPoint(clickLocation) {
+            self.currentColRows[1] = coords
         }
     }
 

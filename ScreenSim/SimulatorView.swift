@@ -18,31 +18,31 @@ class SimulatorView: NSView {
             self.needsDisplay = true
         }
     }
-    private var currentImageIndex = 0 {
+    fileprivate var currentImageIndex = 0 {
         didSet {
             self.needsDisplay = true
         }
     }
     
-    private var mainImage: NSImage? {
+    fileprivate var mainImage: NSImage? {
         if self.currentImageIndex < 0 || self.currentImageIndex >= self.images.count {
             return nil
         }
         return self.images[self.currentImageIndex]
     }
    
-    private func secondaryImageAtIndex(imageIndex: Int) -> NSImage? {
+    fileprivate func secondaryImageAtIndex(_ imageIndex: Int) -> NSImage? {
         if imageIndex < 0 || imageIndex >= self.images.count {
             return nil
         }
         return self.images[imageIndex]
     }
     
-    private var mainAnchorRect: CGRect = CGRect(x: 0.169309711456299,
+    fileprivate var mainAnchorRect: CGRect = CGRect(x: 0.169309711456299,
                                                 y: 0.207394137912326,
                                                 width: 0.682473670111762 - 0.169309711456299,
                                                 height: 0.710408426920573 - 0.207394137912326)
-    private var mainImageRect: CGRect {
+    fileprivate var mainImageRect: CGRect {
         let bnds = self.cbounds
         let x = self.mainAnchorRect.origin.x * bnds.width
         let y = self.mainAnchorRect.origin.y * bnds.height
@@ -51,7 +51,7 @@ class SimulatorView: NSView {
         return CGRect(x: x, y: y, width: w, height: h)
     }
     
-    private var secondaryAnchorRects: [CGRect] = [
+    fileprivate var secondaryAnchorRects: [CGRect] = [
         CGRect(x: 0.273902723524306, y: 0.111719292534722, width: 0.325254080030653 - 0.273902723524306, height: 0.161405368381076 - 0.111719292534722),
         CGRect(x: 0.338488154941135, y: 0.111719292534722, width: 0.325254080030653 - 0.273902723524306, height: 0.161405368381076 - 0.111719292534722),
         CGRect(x: 0.400712119208442, y: 0.111719292534722, width: 0.325254080030653 - 0.273902723524306, height: 0.161405368381076 - 0.111719292534722),
@@ -59,7 +59,7 @@ class SimulatorView: NSView {
         CGRect(x: 0.526669947306315, y: 0.111719292534722, width: 0.325254080030653 - 0.273902723524306, height: 0.161405368381076 - 0.111719292534722),
     ]
     
-    private func secondaryImageRectForImageAtIndex(imageIndex: Int) -> CGRect? {
+    fileprivate func secondaryImageRectForImageAtIndex(_ imageIndex: Int) -> CGRect? {
         if imageIndex < 0 || imageIndex >= self.secondaryAnchorRects.count {
             return nil
         }
@@ -73,7 +73,7 @@ class SimulatorView: NSView {
         return CGRect(x: x, y: y, width: w, height: h)
     }
     
-    private func imageIndexForClickLocation(clickLocation: CGPoint) -> Int? {
+    fileprivate func imageIndexForClickLocation(_ clickLocation: CGPoint) -> Int? {
         for index in 0..<self.secondaryAnchorRects.count {
             if let r = self.secondaryImageRectForImageAtIndex(index) {
                 if r.contains(clickLocation) {
@@ -84,24 +84,24 @@ class SimulatorView: NSView {
         return nil
     }
     
-    private var lastClickLocation: CGPoint = CGPointZero
+    fileprivate var lastClickLocation: CGPoint = CGPoint.zero
     
-    private var cbounds: NSRect {
+    fileprivate var cbounds: NSRect {
         return self.centerScanRect(self.bounds)
     }
     
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
         
-        self.wallpaperImage?.drawInRect(self.cbounds)
-        self.masImage?.drawInRect(self.cbounds)
-        self.mainImage?.drawInRect(self.mainImageRect)
+        self.wallpaperImage?.draw(in: self.cbounds)
+        self.masImage?.draw(in: self.cbounds)
+        self.mainImage?.draw(in: self.mainImageRect)
         
         for index in 0..<self.images.count {
-            guard let img = self.secondaryImageAtIndex(index), rect = self.secondaryImageRectForImageAtIndex(index) else {
+            guard let img = self.secondaryImageAtIndex(index), let rect = self.secondaryImageRectForImageAtIndex(index) else {
                 continue
             }
-            img.drawInRect(rect)
+            img.draw(in: rect)
         }
 //        
 //        NSColor.greenColor().set()
@@ -122,8 +122,8 @@ class SimulatorView: NSView {
 //        self.needsDisplay = true
 //    }
     
-    override func mouseUp(theEvent: NSEvent) {
-        let clickLocation = self.convertPoint(theEvent.locationInWindow, fromView:  nil)
+    override func mouseUp(with theEvent: NSEvent) {
+        let clickLocation = self.convert(theEvent.locationInWindow, from:  nil)
         if let idx = self.imageIndexForClickLocation(clickLocation) {
             self.currentImageIndex = idx
         }

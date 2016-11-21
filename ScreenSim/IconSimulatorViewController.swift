@@ -11,9 +11,9 @@ import Cocoa
 class IconSimulatorViewController: NSViewController {
     @IBOutlet var simView: IconSimulatorView!
 
-    var icon: NSImage? = nil {
+    var icons: [NSImage] = [] {
         didSet {
-            self.simView.icon = icon
+            self.simView.icons = icons
         }
     }
     
